@@ -31,10 +31,10 @@ def send_flex_dollar():
         label_user_a.config(text=f"{user_a.name} flex dollars: {user_a.flex_dollars}")
         messagebox.showinfo("YAY", f"You just sent {amount} flex dollars!")
     else:
-        messagebox.showwarning("Error", "You don't have enough flex dollars!")
+        messagebox.showwarning("Boo, You don't have enough flex dollars!")
 
 
-user_a = User("You", 5, 10)  # Initialize with 5 tickets and 10 flex dollars
+user_a = User("You", 5, 10)  
 user_b = User("User B", 2, 5)
 
 
@@ -69,20 +69,18 @@ entry_computing_id.pack(pady=10)
 button_check_id = tk.Button(root, text="Check ID", command=check_computing_id, font=("Arial", 14))
 button_check_id.pack(pady=10)
 
-# Labels for users' tickets and flex dollars (initially hidden)
 label_user_a = tk.Label(root, text=f"{user_a.name} meal ticket: {user_a.tickets}\nflex dollars: {user_a.flex_dollars}",
                         font=("Arial", 16))
 label_user_b = tk.Label(root, text=f"{user_b.name} meal ticket: {user_b.tickets}\nflex dollars: {user_b.flex_dollars}",
                         font=("Arial", 16))
 
-# Option menu for selecting transfer type (initially hidden)
 option_var = tk.StringVar(root)
 option_var.set("Select Option")  # Default option
 
 options_menu = tk.OptionMenu(root, option_var, "Meal Ticket", "Flex Dollar", command=option_selected)
 options_menu.config(font=("Arial", 14))
 
-# Flex dollar input field and button (hidden initially)
+# Flex dollar : input field and button
 label_flex_dollar = tk.Label(root, text="Enter amount to send:", font=("Arial", 14))
 entry_flex_dollar = tk.Entry(root, font=("Arial", 14))
 button_send_flex = tk.Button(root, text="Send Flex Dollar", command=send_flex_dollar, font=("Arial", 14))
