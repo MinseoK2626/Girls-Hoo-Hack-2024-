@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
-import time
 
 
 class User:
@@ -30,14 +29,13 @@ def send_flex_dollar():
         user_a.flex_dollars -= amount
         user_b.flex_dollars += amount
         label_user_a.config(text=f"{user_a.name} flex dollars: {user_a.flex_dollars}")
-        label_user_b.config(text=f"{user_b.name} flex dollars: {user_b.flex_dollars}")
         messagebox.showinfo("YAY", f"You just sent {amount} flex dollars!")
     else:
-        messagebox.showwarning("You don't have enough flex dollars!")
+        messagebox.showwarning("Error", "You don't have enough flex dollars!")
 
 
-user_a = User("Your", 5, 10) 
-user_b = User("Cathy Joseph's", 2, 5)
+user_a = User("You", 5, 10)  # Initialize with 5 tickets and 10 flex dollars
+user_b = User("User B", 2, 5)
 
 
 def option_selected(event):
@@ -51,12 +49,6 @@ def option_selected(event):
 
 
 def check_computing_id():
-    label_retrieving_data.pack(pady=10)
-    root.update()  
-    time.sleep(2)  
-
-    label_retrieving_data.pack_forget()  
-
     label_user_a.pack(pady=10)
     label_user_b.pack(pady=10)
     options_menu.pack(pady=20)
@@ -65,37 +57,35 @@ def check_computing_id():
 
 
 root = tk.Tk()
-root.title("FOODIE : UVA Food Transfer Program")
+root.title("Ticket Transfer Program")
 root.geometry("400x400")
 
-purple = "#e6e6fa"
-root.configure(bg = purple)
-
-label_computing_id = tk.Label(root, text="Enter Computing ID:", font=("Arial", 14),  bg="#e6e6fa")
+label_computing_id = tk.Label(root, text="Enter Computing ID:", font=("Arial", 14))
 label_computing_id.pack(pady=10)
 
 entry_computing_id = tk.Entry(root, font=("Arial", 14))
 entry_computing_id.pack(pady=10)
 
-button_check_id = tk.Button(root, text="Check ID", command=check_computing_id, font=("Arial", 14), bg="#e6e6fa")
+button_check_id = tk.Button(root, text="Check ID", command=check_computing_id, font=("Arial", 14))
 button_check_id.pack(pady=10)
 
-label_retrieving_data = tk.Label(root, text="Retrieving data...", font=("Arial", 14))
+# Labels for users' tickets and flex dollars (initially hidden)
+label_user_a = tk.Label(root, text=f"{user_a.name} meal ticket: {user_a.tickets}\nflex dollars: {user_a.flex_dollars}",
+                        font=("Arial", 16))
+label_user_b = tk.Label(root, text=f"{user_b.name} meal ticket: {user_b.tickets}\nflex dollars: {user_b.flex_dollars}",
+                        font=("Arial", 16))
 
-
-label_user_a = tk.Label(root, text=f"{user_a.name} meal ticket: {user_a.tickets}\nflex dollars: {user_a.flex_dollars}", font=("Arial", 16))
-label_user_b = tk.Label(root, text=f"{user_b.name} meal ticket: {user_b.tickets}\nflex dollars: {user_b.flex_dollars}", font=("Arial", 16))
-
-
+# Option menu for selecting transfer type (initially hidden)
 option_var = tk.StringVar(root)
-option_var.set("* Select Option *")  
+option_var.set("Select Option")  # Default option
 
-options_menu = tk.OptionMenu(root, option_var, "1) Meal Ticket", "2) Flex Dollar", command=option_selected)
-options_menu.config(font=("Arial", 16))
+options_menu = tk.OptionMenu(root, option_var, "Meal Ticket", "Flex Dollar", command=option_selected)
+options_menu.config(font=("Arial", 14))
 
-
+# Flex dollar input field and button (hidden initially)
 label_flex_dollar = tk.Label(root, text="Enter amount to send:", font=("Arial", 14))
 entry_flex_dollar = tk.Entry(root, font=("Arial", 14))
 button_send_flex = tk.Button(root, text="Send Flex Dollar", command=send_flex_dollar, font=("Arial", 14))
 
 root.mainloop()
+
