@@ -34,7 +34,7 @@ def send_flex_dollar():
         messagebox.showwarning("Boo, You don't have enough flex dollars!")
 
 
-user_a = User("You", 5, 10)  
+user_a = User("Your", 5, 10)  
 user_b = User("User B", 2, 5)
 
 
