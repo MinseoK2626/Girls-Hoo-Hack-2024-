@@ -20,7 +20,7 @@ def send_one_ticket():
 
         messagebox.showinfo("YAY", "You just sent a ticket! Enjoy your meal with friend!")
     else:
-        messagebox.showwarning("Error", "You don't have enough tickets!")
+        messagebox.showwarning("Boo, You don't have enough tickets!")
 
 
 def send_flex_dollar():
